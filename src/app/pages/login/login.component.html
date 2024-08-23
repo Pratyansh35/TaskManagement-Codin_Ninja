@@ -1,17 +1,61 @@
-<form action="" [formGroup]="loginForm" (ngSubmit)="login()" >
+<form
+  class="max-w-md mx-auto bg-white shadow-lg rounded-lg p-8"
+  [formGroup]="loginForm"
+  (ngSubmit)="login()"
+>
+  <h2 class="text-2xl font-semibold text-center mb-6 text-gray-800">Login</h2>
 
-<div>
-    <label for="email"> Email </label>
-    <input type="email" formControlName="email">
-</div>
+  <div class="mb-4">
+    <label for="email" class="block text-sm font-medium text-gray-700">
+      Email
+    </label>
+    <input
+      type="email"
+      formControlName="email"
+      class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      placeholder="Enter your email"
+    />
+  </div>
 
-<div>
-    <label for="password">Password</label>
-    <input type="password" formControlName="password">
-</div>
+  <div class="mb-6">
+    <label for="password" class="block text-sm font-medium text-gray-700">
+      Password
+    </label>
+    <input
+      type="password"
+      formControlName="password"
+      class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      placeholder="Enter your password"
+    />
+  </div>
 
-<div>
-    <button type="submit" [disabled]=" !loginForm.valid">Login</button>
-</div>
+  <div>
+    <button
+      type="submit"
+      [disabled]="!loginForm.valid"
+      class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50"
+    >
+      Login
+    </button>
+  </div>
+
+  <div class="mt-4">
+    <button
+      type="button"
+      (click)="redirectregister()"
+      class="w-full bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+    >
+      Register
+    </button>
+  </div>
 </form>
 
+<div class="mt-6 text-center">
+  <button
+    (click)="githublogin()"
+    class="bg-gray-800 text-white py-2 px-4 rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+  >
+    Login with GitHub <img src="../../assets/githubIcon.png" class="w-4 h-4 inline-block" /> 
+  </button>
+  
+</div>

@@ -32,5 +32,7 @@ export class RegisterComponent {
     }
     )
   }
-
+  redirectlogin(){
+    window.location.href = "/login"
+  }
 }
