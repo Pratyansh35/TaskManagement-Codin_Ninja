@@ -1,0 +1,57 @@
+<h1 class="text-2xl font-bold mb-4">View and Edit Tasks</h1>
+
+<table class="min-w-full bg-white border">
+  <thead class="bg-gray-200">
+    <tr>
+      <th class="py-2 px-4 border">Title</th>
+      <th class="py-2 px-4 border">Description</th>
+      <th class="py-2 px-4 border">Due Date</th>
+      <th class="py-2 px-4 border">Priority</th>
+      <th class="py-2 px-4 border">Status</th>
+      <th class="py-2 px-4 border">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks" class="border-t">
+      <ng-container *ngIf="editingTaskId !== task.id">
+        <td class="py-2 px-4 border">{{ task.title }}</td>
+        <td class="py-2 px-4 border">{{ task.description }}</td>
+        <td class="py-2 px-4 border">{{ task.dueDate | date }}</td>
+        <td class="py-2 px-4 border">{{ task.priority }}</td>
+        <td class="py-2 px-4 border">{{ task.status }}</td>
+        <td class="py-2 px-4 border">
+          <button (click)="startEditing(task)" class="bg-yellow-500 text-white py-1 px-3 rounded">Edit</button>
+        </td>
+      </ng-container>
+      <ng-container *ngIf="editingTaskId === task.id">
+        <td class="py-2 px-4 border">
+          <input [formControl]="getFormControl('title')" class="p-2 border border-gray-300 rounded w-full" />
+        </td>
+        <td class="py-2 px-4 border">
+          <textarea [formControl]="getFormControl('description')" class="p-2 border border-gray-300 rounded w-full"></textarea>
+        </td>
+        <td class="py-2 px-4 border">
+          <input type="date" [formControl]="getFormControl('dueDate')" class="p-2 border border-gray-300 rounded w-full" />
+        </td>
+        <td class="py-2 px-4 border">
+          <select [formControl]="getFormControl('priority')" class="p-2 border border-gray-300 rounded w-full">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </td>
+        <td class="py-2 px-4 border">
+          <select [formControl]="getFormControl('status')" class="p-2 border border-gray-300 rounded w-full">
+            <option value="to-do">To Do</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </td>
+        <td class="py-2 px-4 border">
+          <button (click)="saveTask(task.id)" class="bg-green-500 text-white py-1 px-3 rounded">Save</button>
+          <button (click)="cancelEdit()" class="bg-gray-500 text-white py-1 px-3 rounded">Cancel</button>
+        </td>
+      </ng-container>
+    </tr>
+  </tbody>
+</table>

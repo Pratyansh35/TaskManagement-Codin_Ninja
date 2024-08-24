@@ -1,12 +1,47 @@
-<h2>
-    Welcome {{ authService.currentUser()?.displayName }}
-  </h2>
-  
-  <h2>
-    {{ authService.currentUser()?.email }}
-  </h2>
-  
-  <img [src]="authService.currentUser()?.photoURL" alt="User Photo">
-  
-  <button (click)="signOut()">Logout</button>
-  
+<!-- Side Drawer -->
+<div class="fixed inset-0 z-40 flex" [class.hidden]="!isDrawerOpen">
+  <div class="fixed inset-0 bg-black opacity-50" (click)="toggleDrawer()"></div>
+
+  <div class="relative bg-white shadow-xl w-72 md:w-80 h-full">
+    <div class="flex flex-col items-center justify-center h-full p-6">
+      <div class="mb-8 text-center">
+        <img [src]="authService.currentUser()?.photoURL" class="rounded-full w-28 h-28 mb-4 shadow-lg">
+        <h2 class="text-2xl font-bold text-gray-800">Hello, {{ authService.currentUser()?.displayName }}</h2>
+        <p class="text-gray-500">{{ authService.currentUser()?.email }}</p>
+      </div>
+
+      <div class="w-full space-y-4">
+        <button class="w-full bg-blue-500 text-white font-semibold py-3 px-4 rounded hover:bg-blue-600 transition duration-200"
+          (click)="router.navigateByUrl('/home/add-task')">
+          Add New Task
+        </button>
+        <button class="w-full bg-green-500 text-white font-semibold py-3 px-4 rounded hover:bg-green-600 transition duration-200"
+          (click)="router.navigateByUrl('/home/view-tasks')">
+          View Tasks
+        </button>
+        <button class="w-full bg-yellow-500 text-white font-semibold py-3 px-4 rounded hover:bg-yellow-600 transition duration-200"
+          (click)="router.navigateByUrl('/home/export-tasks')">
+          Export Tasks
+        </button>
+        <button class="w-full bg-gray-500 text-white font-semibold py-3 px-4 rounded hover:bg-gray-600 transition duration-200"
+          (click)="router.navigateByUrl('/home/task-history')">
+          Task History
+        </button>
+        <button (click)="signOut()" class="w-full bg-red-500 text-white font-semibold py-3 px-4 rounded hover:bg-red-600 transition duration-200">
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<button class="fixed top-4 left-4 z-50 bg-gray-800 text-white p-2 rounded" (click)="toggleDrawer()">
+  ☰
+</button>
+
+
+<div class="ml-72 md:ml-80 p-6">
+  <router-outlet></router-outlet> <!-- all routes after /home/ -->
+</div>

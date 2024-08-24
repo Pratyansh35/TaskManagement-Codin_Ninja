@@ -1,0 +1,32 @@
+<h1 class="text-2xl font-bold mb-4">Add New Task</h1>
+<form (ngSubmit)="addTask()" [formGroup]="taskForm" class="space-y-4">
+  <div>
+    <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+    <input id="title" formControlName="title" placeholder="Title" class="p-2 border border-gray-300 rounded w-full" />
+  </div>
+  <div>
+    <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+    <textarea id="description" formControlName="description" placeholder="Description" class="p-2 border border-gray-300 rounded w-full"></textarea>
+  </div>
+  <div>
+    <label for="dueDate" class="block text-sm font-medium text-gray-700">Due Date</label>
+    <input id="dueDate" type="date" formControlName="dueDate" class="p-2 border border-gray-300 rounded w-full" />
+  </div>
+  <div>
+    <label for="priority" class="block text-sm font-medium text-gray-700">Priority</label>
+    <select id="priority" formControlName="priority" class="p-2 border border-gray-300 rounded w-full">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+  </div>
+  <div>
+    <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+    <select id="status" formControlName="status" class="p-2 border border-gray-300 rounded w-full">
+      <option value="to-do">To Do</option>
+      <option value="in-progress">In Progress</option>
+      <option value="completed">Completed</option>
+    </select>
+  </div>
+  <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded w-full md:w-auto">Add Task</button>
+</form>

@@ -6,6 +6,11 @@ const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 export const routes: Routes = [
   {
+    path: '',
+    loadChildren: () => import('./pages/home/home.routes').then(m => m.HOME_ROUTES),
+    ...canActivate(redirectUnauthorizedToLogin)
+  },
+  {
     path: 'register',
     loadChildren: () => import('./pages/register/register.routes').then(m => m.REGISTER_ROUTES)
   },
