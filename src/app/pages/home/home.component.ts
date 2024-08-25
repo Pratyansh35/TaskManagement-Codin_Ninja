@@ -16,7 +16,7 @@ export class HomeLayoutComponent {
   authService = inject(AuthService);
   router = inject(Router);
   isDrawerOpen = false;
-
+  isHovering: boolean = false
   signOut() {
     this.authService.signOut().subscribe(() => {
       this.router.navigateByUrl('login');

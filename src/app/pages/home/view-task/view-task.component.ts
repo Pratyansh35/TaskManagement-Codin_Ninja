@@ -15,6 +15,8 @@ export class ViewTasksComponent implements OnInit {
   tasks: Task[] = [];
   editTaskForm: FormGroup | null = null;
   editingTaskId: string | null = null;
+  taskIdToDelete: string | null = null;
+  showConfirmDeleteDialog = false;
 
   constructor(private taskService: TaskService, private fb: FormBuilder) {}
 
@@ -23,8 +25,8 @@ export class ViewTasksComponent implements OnInit {
   }
 
   loadTasks() {
-    this.taskService.getAllTasks().then((data) => {
-      this.tasks = Object.values(data || {}); // Convert the object to an array
+    this.taskService.getAllTasks().then((tasks) => {
+      this.tasks = tasks;
     }).catch(error => {
       console.error('Error fetching tasks:', error);
     });
@@ -69,5 +71,27 @@ export class ViewTasksComponent implements OnInit {
   cancelEdit() {
     this.editingTaskId = null;
     this.editTaskForm = null;
+  }
+
+  confirmDelete(taskId: string) {
+    this.taskIdToDelete = taskId;
+    this.showConfirmDeleteDialog = true;
+  }
+
+  deleteTask() {
+    if (this.taskIdToDelete) {
+      this.taskService.deleteTask(this.taskIdToDelete).then(() => {
+        this.tasks = this.tasks.filter(task => task.id !== this.taskIdToDelete);
+        this.taskIdToDelete = null;
+        this.showConfirmDeleteDialog = false;
+      }).catch(error => {
+        console.error('Error deleting task:', error);
+      });
+    }
+  }
+
+  cancelDelete() {
+    this.showConfirmDeleteDialog = false;
+    this.taskIdToDelete = null;
   }
 }

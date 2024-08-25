@@ -1,0 +1,29 @@
+.task-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.priority-section {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.low-priority {
+  border-left: 4px solid #4CAF50;
+}
+
+.medium-priority {
+  border-left: 4px solid #FFC107;
+}
+
+.high-priority {
+  border-left: 4px solid #F44336;
+}
+
+.task-card-content {
+  background-color: #fff;
+  color: #333;
+}

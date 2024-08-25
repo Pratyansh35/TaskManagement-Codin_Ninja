@@ -1,15 +1,15 @@
-<!-- Side Drawer -->
 <div class="fixed inset-0 z-40 flex" [class.hidden]="!isDrawerOpen">
   <div class="fixed inset-0 bg-black opacity-50" (click)="toggleDrawer()"></div>
 
-  <div class="relative bg-white shadow-xl w-72 md:w-80 h-full">
+  <div class="relative bg-white shadow-xl w-72 md:w-80 h-full transform transition-transform duration-300 ease-in-out"
+    [class.translate-x-0]="isDrawerOpen"
+    [class.-translate-x-full]="!isDrawerOpen">
     <div class="flex flex-col items-center justify-center h-full p-6">
-      <div class="mb-8 text-center">
+      <div class="mb-8 text-center flex flex-col items-center"> 
         <img [src]="authService.currentUser()?.photoURL" class="rounded-full w-28 h-28 mb-4 shadow-lg">
         <h2 class="text-2xl font-bold text-gray-800">Hello, {{ authService.currentUser()?.displayName }}</h2>
         <p class="text-gray-500">{{ authService.currentUser()?.email }}</p>
       </div>
-
       <div class="w-full space-y-4">
         <button class="w-full bg-blue-500 text-white font-semibold py-3 px-4 rounded hover:bg-blue-600 transition duration-200"
           (click)="router.navigateByUrl('/home/add-task')">
@@ -37,11 +37,18 @@
 
 
 
-<button class="fixed top-4 left-4 z-50 bg-gray-800 text-white p-2 rounded" (click)="toggleDrawer()">
-  ☰
-</button>
-
-
-<div class="ml-72 md:ml-80 p-6">
-  <router-outlet></router-outlet> <!-- all routes after /home/ -->
-</div>
+<nav class="fixed top-0 left-0 w-full bg-gray-800 p-4 z-50 flex items-center justify-between">
+  <button class="text-white p-2 rounded" 
+          (click)="toggleDrawer()"
+          (mouseenter)="isHovering = true" 
+          (mouseleave)="isHovering = false">
+    ☰
+  </button>
+  <span class="text-white text-xl font-semibold">Task Manager</span> 
+  <div class="text-white">
+    <span *ngIf="authService.currentUser()?.displayName">Welcome, {{ authService.currentUser()?.displayName }}!</span>
+  </div>
+</nav>
+<main class="pt-16"> <div class="p-6"> 
+  <router-outlet></router-outlet> 
+</div> </main> 

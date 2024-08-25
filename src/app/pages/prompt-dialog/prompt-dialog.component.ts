@@ -30,7 +30,6 @@ export class PromptDialogComponent {
   }
 
   submit() {
-    // Emit the email and password
     this.submitEvent.emit({ email: this.email, password: this.password });
     this.hide();
   }

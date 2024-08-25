@@ -5,7 +5,6 @@ import { AddTaskComponent } from './add-task/add-task.component';
 import { ViewTasksComponent } from './view-task/view-task.component';
 // import { ExportTasksComponent } from './export-tasks/export-tasks.component';
 // import { TaskHistoryComponent } from './task-history/task-history.component';
-
 export const HOME_ROUTES: Routes = [
   {
     path: 'home',

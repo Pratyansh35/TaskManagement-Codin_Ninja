@@ -3,8 +3,9 @@ export interface Task {
   title: string;
   description?: string;
   dueDate?: string;
-  priority: 'low' | 'medium' | 'high';
-  status: 'to-do' | 'in-progress' | 'completed';
+  priority: 'high' | 'medium' | 'low';
+  status: string;
   createdDate: string;
-  history: any[]; 
+  history?: any[];
+  useremail?: string;
 }
