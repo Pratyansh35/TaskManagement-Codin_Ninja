@@ -4,6 +4,7 @@ import { inject } from '@angular/core';
 import { Task } from '../models/task.model'; 
 import { AuthService } from '../auth.service';
 import { BehaviorSubject } from 'rxjs';
+import { saveAs } from 'file-saver'; 
 
 @Injectable({
   providedIn: 'root'
@@ -37,8 +38,52 @@ export class TaskService {
 
   saveTask(task: Task) {
     const taskRef = ref(this.db, `${this.getUserTasksPath()}/${task.id}`);
-    return set(taskRef, task);
+  
+    // Get the current task data to compare with the updated data
+    return this.getTask(task.id).then((currentTask: Task | null) => {
+      if (currentTask) {
+        const historyEntry = {
+          timestamp: new Date().toISOString(),
+          changes: this.detectChanges(currentTask, task),
+        };
+  
+        // Add the history entry to the history array
+        if (!currentTask.history) {
+          currentTask.history = [];
+        }
+        currentTask.history.push(historyEntry);
+  
+        // Update the task with the new data and history
+        return set(taskRef, { ...task, history: currentTask.history });
+      } else {
+        // If the task is new, just save it with an empty history
+        return set(taskRef, { ...task, history: [] });
+      }
+    });
   }
+  
+  private detectChanges(oldTask: Task, newTask: Task): string[] {
+    const changes: string[] = [];
+  
+    if (oldTask.title !== newTask.title) {
+      changes.push(`Title changed from "${oldTask.title}" to "${newTask.title}"`);
+    }
+    if (oldTask.description !== newTask.description) {
+      changes.push(`Description changed`);
+    }
+    if (oldTask.dueDate !== newTask.dueDate) {
+      changes.push(`Due Date changed from "${oldTask.dueDate}" to "${newTask.dueDate}"`);
+    }
+    if (oldTask.priority !== newTask.priority) {
+      changes.push(`Priority changed from "${oldTask.priority}" to "${newTask.priority}"`);
+    }
+    if (oldTask.status !== newTask.status) {
+      changes.push(`Status changed from "${oldTask.status}" to "${newTask.status}"`);
+    }
+  
+    return changes;
+  }
+  
 
   getTask(taskId: string) {
     const taskRef = ref(this.db, `${this.getUserTasksPath()}/${taskId}`);
@@ -66,5 +111,34 @@ export class TaskService {
   deleteTask(taskId: string) {
     const taskRef = ref(this.db, `${this.getUserTasksPath()}/${taskId}`);
     return remove(taskRef);
+  }
+
+  exportTasksToCSV(): void {
+    this.getAllTasks().then((tasks) => {
+      const csvData = this.convertToCSV(tasks);
+      const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+      const fileName = 'tasks.csv';
+      saveAs(blob, fileName);
+    }).catch(error => {
+      console.error('Error exporting tasks to CSV:', error);
+    });
+  }
+  
+
+  private convertToCSV(tasks: Task[]): string {
+    const headers = 'ID,Title,Description,Due Date,Priority,Status,Created Date\n';
+    const rows = tasks.map(task => {
+      return [
+        task.id,
+        task.title,
+        task.description || '',
+        task.dueDate || '',
+        task.priority,
+        task.status,
+        task.createdDate,
+      ].join(',');
+    }).join('\n');
+
+    return headers + rows;
   }
 }

@@ -94,4 +94,7 @@ export class ViewTasksComponent implements OnInit {
     this.showConfirmDeleteDialog = false;
     this.taskIdToDelete = null;
   }
+  exportTasks() {
+    this.taskService.exportTasksToCSV();
+  }
 }

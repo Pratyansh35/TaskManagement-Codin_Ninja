@@ -1,27 +1,29 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { TaskService } from '../../../services/task.service'; // Update the path as necessary
 import { Task } from '../../../models/task.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-task-history',
+  standalone: true,
   templateUrl: './task-history.component.html',
-  styleUrls: ['./task-history.component.css']
+  styleUrls: ['./task-history.component.css'],
+  imports: [CommonModule]
 })
 export class TaskHistoryComponent implements OnInit {
-  @Input() task: Task | null = null;
-  historyForm: FormGroup;
+  tasks: Task[] = [];
 
-  constructor(private fb: FormBuilder) {
-    this.historyForm = this.fb.group({
-      history: [[]]
+  constructor(private taskService: TaskService) {}
+
+  ngOnInit(): void {
+    this.taskService.getAllTasks().then(tasks => {
+      this.tasks = tasks;
+    }).catch(error => {
+      console.error('Failed to fetch tasks:', error);
     });
   }
 
-  ngOnInit(): void {
-    if (this.task && this.task.history) {
-      this.historyForm.patchValue({
-        history: this.task.history
-      });
-    }
+  getTaskHistory(task: Task) {
+    return task.history || [];
   }
 }

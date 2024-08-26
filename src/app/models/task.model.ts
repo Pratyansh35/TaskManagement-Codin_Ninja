@@ -6,6 +6,6 @@ export interface Task {
   priority: 'high' | 'medium' | 'low';
   status: string;
   createdDate: string;
-  history?: any[];
+  history?: { timestamp: string; changes: string[] }[];
   useremail?: string;
 }

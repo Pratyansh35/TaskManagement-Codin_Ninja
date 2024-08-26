@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
+import { TaskService } from '../../services/task.service';
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-home-layout',
@@ -13,6 +15,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeLayoutComponent {
+  tasks: Task[] = [];
+  constructor(private taskService: TaskService) {}
   authService = inject(AuthService);
   router = inject(Router);
   isDrawerOpen = false;
@@ -25,5 +29,9 @@ export class HomeLayoutComponent {
 
   toggleDrawer() {
     this.isDrawerOpen = !this.isDrawerOpen;
+  }
+  
+  exportTasks() {
+    this.taskService.exportTasksToCSV();
   }
 }

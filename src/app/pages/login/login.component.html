@@ -1,9 +1,13 @@
 <form
-  class="max-w-md mx-auto bg-white shadow-lg rounded-lg p-8"
+  class="max-w-md mx-auto bg-white shadow-lg rounded-lg p-8 mt-10"
   [formGroup]="loginForm"
   (ngSubmit)="login()"
 >
-  <h2 class="text-2xl font-semibold text-center mb-6 text-gray-800">Login</h2>
+  <div class="text-center mb-6">
+    <img src="/codingninja.jpg" alt="Task Manager Logo" class="w-24 mx-auto mb-4" />
+    <h2 class="text-3xl font-bold text-gray-800">Task Management</h2>
+    <p class="text-gray-600 mt-2">Login to manage your tasks efficiently</p>
+  </div>
 
   <div class="mb-4">
     <label for="email" class="block text-sm font-medium text-gray-700">
@@ -53,9 +57,8 @@
 <div class="mt-6 text-center">
   <button
     (click)="githublogin()"
-    class="bg-gray-800 text-white py-2 px-4 rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 text-center"
+    class="bg-gray-800 text-white py-2 px-4 rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
   >
-    Login with GitHub <img src="/githubIcon.png" alt="GitHub" class="inline-block " />
+    Login with GitHub <img src="/githubIcon.png" alt="GitHub" class="inline-block ml-2" />
   </button>
-  
 </div>

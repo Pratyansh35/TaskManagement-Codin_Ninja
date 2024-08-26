@@ -20,14 +20,14 @@
           View Tasks
         </button>
         <button class="w-full bg-yellow-500 text-white font-semibold py-3 px-4 rounded hover:bg-yellow-600 transition duration-200"
-          (click)="router.navigateByUrl('/home/export-tasks')">
+          (click)="exportTasks()">
           Export Tasks
         </button>
         <button class="w-full bg-gray-500 text-white font-semibold py-3 px-4 rounded hover:bg-gray-600 transition duration-200"
           (click)="router.navigateByUrl('/home/task-history')">
           Task History
         </button>
-        <button (click)="signOut()" class="w-full bg-red-500 text-white font-semibold py-3 px-4 rounded hover:bg-red-600 transition duration-200">
+        <button (click)="signOut() " class="w-full bg-red-500 text-white font-semibold py-3 px-4 rounded hover:bg-red-600 transition duration-200">
           Logout
         </button>
       </div>
