@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, user } from '@angular/fire/auth';
 import { GithubAuthProvider, signInWithEmailAndPassword, signInWithPopup, EmailAuthProvider, linkWithCredential } from 'firebase/auth';
 import { from } from 'rxjs';
-import { UserModel } from './models/user.model';
+import { UserModel } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'

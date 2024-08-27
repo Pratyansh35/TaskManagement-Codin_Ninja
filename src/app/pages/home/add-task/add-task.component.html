@@ -1,36 +1,38 @@
-<div class="flex flex-col items-center justify-start bg-gray-100"> 
-  <div class="bg-white p-8 rounded-lg shadow-lg w-96 max-w-full mt-16"> 
-
+<!-- add-task.component.html -->
+<div class="flex flex-col md:flex-row h-screen">
+  
+  <div class="bg-white p-8 rounded-lg shadow-lg w-96 max-w-full mt-16">
     <h1 *ngIf="!isFormOpen" class="text-3xl font-bold mb-4 text-center">Ready to get organized?</h1>
     <p *ngIf="!isFormOpen" class="text-gray-600 mb-6 text-center">Start adding your tasks and take control of your day!</p>
-    <div class="text-center"> <button *ngIf="!isFormOpen" (click)="isFormOpen = true" 
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-md">
-  Add New Task
-</button>
-</div>
+    <div class="text-center">
+      <button *ngIf="!isFormOpen" (click)="isFormOpen = true"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-md">
+        Add New Task
+      </button>
+    </div>
 
     <form *ngIf="isFormOpen" [formGroup]="taskForm" class="flex flex-col space-y-6 w-full">
       <div *ngIf="currentStep === 0">
-        <h3 class="text-lg font-medium mb-2 text-center">Step 1: Title</h3> 
+        <h3 class="text-lg font-medium mb-2 text-center">Step 1: Title</h3>
         <div class="w-full">
           <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Title (required)</label>
-          <input 
-            type="text" 
-            id="title" 
-            formControlName="title" 
+          <input
+            type="text"
+            id="title"
+            formControlName="title"
             placeholder="Enter task title"
-            class="w-full border-2 border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-3 py-2" 
+            class="w-full border-2 border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-3 py-2"
           />
           <div *ngIf="taskForm.get('title')?.hasError('required') && taskForm.get('title')?.touched"
-               class="text-red-500 text-sm mt-1">
+            class="text-red-500 text-sm mt-1">
             Title is required
-          </div> 
+          </div>
         </div>
         <div class="flex justify-end space-x-2 mt-4">
           <button type="button" (click)="cancel()"
-                  class="border border-gray-300 text-gray-700 hover:bg-gray-100 py-2 px-4 rounded transition duration-300">Cancel</button>
+            class="border border-gray-300 text-gray-700 hover:bg-gray-100 py-2 px-4 rounded transition duration-300">Cancel</button>
           <button type="button" (click)="nextStep()" [disabled]="taskForm.get('title')?.invalid"
-                  class="bg-blue-500 hover:bg-blue-600 text-white shadow-md py-2 px-4 rounded transition duration-300">Next</button>
+            class="bg-blue-500 hover:bg-blue-600 text-white shadow-md py-2 px-4 rounded transition duration-300">Next</button>
         </div>
       </div>
 
@@ -38,49 +40,49 @@
         <h3 class="text-lg font-medium mb-2 text-center">Step 2: Description</h3>
         <div class="w-full">
           <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-          <textarea 
-            id="description" 
-            formControlName="description" 
-            placeholder="Enter task description" 
+          <textarea
+            id="description"
+            formControlName="description"
+            placeholder="Enter task description"
             rows="5"
             class="w-full border-2 border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-3 py-2"
-          ></textarea> 
+          ></textarea>
         </div>
         <div class="flex justify-end space-x-2 mt-4">
           <button type="button" (click)="cancel()"
-                  class="border border-gray-300 text-gray-700 hover:bg-red-100 hover:text-red-600 py-2 px-4 rounded transition duration-300">Cancel</button>
+            class="border border-gray-300 text-gray-700 hover:bg-red-100 hover:text-red-600 py-2 px-4 rounded transition duration-300">Cancel</button>
           <button type="button" (click)="skipStep()"
-                  class="border border-gray-300 text-gray-700 hover:bg-gray-100 py-2 px-4 rounded transition duration-300">Skip</button> 
+            class="border border-gray-300 text-gray-700 hover:bg-gray-100 py-2 px-4 rounded transition duration-300">Skip</button>
           <button type="button" (click)="nextStep()"
-                  class="bg-blue-500 hover:bg-blue-600 text-white shadow-md py-2 px-4 rounded transition duration-300">Next</button>
+            class="bg-blue-500 hover:bg-blue-600 text-white shadow-md py-2 px-4 rounded transition duration-300">Next</button>
         </div>
       </div>
 
-      <div *ngIf="currentStep === 2" class="flex flex-col"> 
+      <div *ngIf="currentStep === 2" class="flex flex-col">
         <div class="w-full mb-4">
           <label for="dueDate" class="block text-sm font-medium text-gray-700 mb-2">Due Date</label>
-          <input 
-            type="date" 
-            id="dueDate" 
-            formControlName="dueDate" 
+          <input
+            type="date"
+            id="dueDate"
+            formControlName="dueDate"
             class="w-full border-2 border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-3 py-2"
           />
         </div>
-        <div class="flex justify-end space-x-2 self-end"> 
+        <div class="flex justify-end space-x-2 self-end">
           <button type="button" (click)="cancel()"
-                  class="border border-gray-300 text-gray-700 hover:bg-red-100 hover:text-red-600 py-2 px-4 rounded transition duration-300">Cancel</button>
+            class="border border-gray-300 text-gray-700 hover:bg-red-100 hover:text-red-600 py-2 px-4 rounded transition duration-300">Cancel</button>
           <button type="button" (click)="skipStep()"
-                  class="border border-gray-300 text-gray-700 hover:bg-gray-100 py-2 px-4 rounded transition duration-300">Skip</button> 
+            class="border border-gray-300 text-gray-700 hover:bg-gray-100 py-2 px-4 rounded transition duration-300">Skip</button>
           <button type="button" (click)="nextStep()"
-                  class="bg-blue-500 hover:bg-blue-600 text-white shadow-md py-2 px-4 rounded transition duration-300">Next</button>
+            class="bg-blue-500 hover:bg-blue-600 text-white shadow-md py-2 px-4 rounded transition duration-300">Next</button>
         </div>
       </div>
 
       <div *ngIf="currentStep === 3" class="flex flex-col">
         <div class="w-full mb-4">
           <label for="priority" class="block text-sm font-medium text-gray-700 mb-2">Priority</label>
-          <select 
-            id="priority" 
+          <select
+            id="priority"
             formControlName="priority"
             class="w-full border-2 border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-3 py-2"
           >
@@ -89,22 +91,21 @@
             <option value="high">High</option>
           </select>
         </div>
-        
         <div class="flex justify-end space-x-2 self-end">
           <button type="button" (click)="cancel()"
-                  class="border border-gray-300 text-gray-700 hover:bg-red-100 hover:text-red-600 py-2 px-4 rounded transition duration-300">Cancel</button>
+            class="border border-gray-300 text-gray-700 hover:bg-red-100 hover:text-red-600 py-2 px-4 rounded transition duration-300">Cancel</button>
           <button type="button" (click)="skipStep()"
-                  class="border border-gray-300 text-gray-700 hover:bg-gray-100 py-2 px-4 rounded transition duration-300">Skip</button> 
+            class="border border-gray-300 text-gray-700 hover:bg-gray-100 py-2 px-4 rounded transition duration-300">Skip</button>
           <button type="button" (click)="nextStep()"
-                  class="bg-blue-500 hover:bg-blue-600 text-white shadow-md py-2 px-4 rounded transition duration-300">Next</button>
+            class="bg-blue-500 hover:bg-blue-600 text-white shadow-md py-2 px-4 rounded transition duration-300">Next</button>
         </div>
       </div>
 
-      <div *ngIf="currentStep === 4" class="flex flex-col"> 
+      <div *ngIf="currentStep === 4" class="flex flex-col">
         <div class="w-full mb-4">
           <label for="status" class="block text-sm font-medium text-gray-700 mb-2">Status</label>
-          <select 
-            id="status" 
+          <select
+            id="status"
             formControlName="status"
             class="w-full border-2 border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-200 px-3 py-2"
           >
@@ -113,17 +114,14 @@
             <option value="completed">Completed</option>
           </select>
         </div>
-      
-        <div class="flex justify-end space-x-2 self-end"> 
+        <div class="flex justify-end space-x-2 self-end">
           <button type="button" (click)="cancel()"
-                  class="border border-gray-300 text-gray-700 hover:bg-red-100 hover:text-red-600 py-2 px-4 rounded transition duration-300">Cancel</button>
+            class="border border-gray-300 text-gray-700 hover:bg-red-100 hover:text-red-600 py-2 px-4 rounded transition duration-300">Cancel</button>
           <button type="submit" (click)="confirm()"
-                  class="bg-green-500 hover:bg-green-600 text-white shadow-md py-2 px-4 rounded transition duration-300">Confirm</button>
-        </div> 
+            class="bg-green-500 hover:bg-green-600 text-white shadow-md py-2 px-4 rounded transition duration-300">Confirm</button>
+        </div>
       </div>
-
     </form>
   </div>
   <app-view-cards></app-view-cards>
 </div>
-

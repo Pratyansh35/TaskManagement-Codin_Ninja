@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Database, ref, set, get, remove } from '@angular/fire/database';
 import { inject } from '@angular/core';
 import { Task } from '../models/task.model'; 
-import { AuthService } from '../auth.service';
+import { AuthService } from './auth.service';
 import { BehaviorSubject } from 'rxjs';
 import { saveAs } from 'file-saver'; 
 
@@ -39,7 +39,7 @@ export class TaskService {
   saveTask(task: Task) {
     const taskRef = ref(this.db, `${this.getUserTasksPath()}/${task.id}`);
   
-    // Get the current task data to compare with the updated data
+    // current task data to compare with the updated data
     return this.getTask(task.id).then((currentTask: Task | null) => {
       if (currentTask) {
         const historyEntry = {

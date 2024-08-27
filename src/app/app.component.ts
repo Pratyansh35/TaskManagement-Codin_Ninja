@@ -1,7 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { User } from '@angular/fire/auth';
 import { Database, ref, onValue } from '@angular/fire/database';
 
