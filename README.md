@@ -1,27 +1,36 @@
 # TaskManager
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
+## Overview
+TaskManager is a task management application built with Angular that allows users to manage their tasks efficiently. Users can log in via email or GitHub, add, sort, and filter tasks, view tasks in a dashboard, export them to CSV, and track task history. The app is designed to be responsive and user-friendly.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Login**: Users can log in using their email or GitHub account.
+  ![login](https://github.com/user-attachments/assets/d5fe4631-459e-4dad-9d8a-fe485dd1b3c4)
+  ![login2](https://github.com/user-attachments/assets/8894d10f-34cb-4966-9b79-64a508ebfe9c)
 
-## Code scaffolding
+- **Home Screen**: Users can add, sort, and filter tasks on the home screen.
+  ![addtask1](https://github.com/user-attachments/assets/939296b7-8e35-4cb6-a5ba-2bfa9fdaf9c7)
+  ![addtask2](https://github.com/user-attachments/assets/f8f5d650-218d-4de3-95c0-1bb6ad94fe33)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Dashboard**: View all tasks in a tabular format with options to edit and export tasks as CSV files.
+  ![view1](https://github.com/user-attachments/assets/2dec9bc6-8b80-4953-b6d4-b6fabd546771)
+  ![view2](https://github.com/user-attachments/assets/edc6b42a-956c-4653-b518-21ff2f85b580)
 
-## Build
+- **Task History**: Track all changes made to tasks over time in the history section.
+  ![history](https://github.com/user-attachments/assets/c53ccb54-16f5-4094-97be-5ee71ff2db3c)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Quick Panel**: Easily navigate between different components using the quick panel.
+  ![quickpanel](https://github.com/user-attachments/assets/b51196a2-1384-41cb-9b53-67beef926327)
 
-## Running unit tests
+## Getting Started
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Prerequisites
+Ensure you have the following installed:
+- [Node.js](https://nodejs.org/en/)
+- [Angular CLI](https://angular.io/cli) version 18.2.1
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/taskmanager.git
